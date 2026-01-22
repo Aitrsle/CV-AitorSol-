@@ -1,0 +1,177 @@
+/*1. VARIABLES Y CONFIGURACIÓN BASE*/
+
+:root {
+  --color-principal: #5688ba;
+  --color-acento: #101010;
+  --color-fondo: #eddcdc;
+  --blanco: #ffffff;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: larger; 
+}
+
+body {
+  background-color: var(--color-fondo);
+  margin: 0;
+  color: #564b4b;
+  text-align: center; 
+}
+
+/* 2. HEADER (Nombre y Foto)*/
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: var(--color-principal);
+  color: rgb(0, 0, 0);
+  font-size: large;
+}
+
+header > img {
+  margin: 1rem auto;
+  border-radius: 40%;
+  border: 3px solid var(--color-acento);
+  transition: transform 3s;
+  width: 150px;
+}
+
+header img:hover {
+  /* La imagen hace una vuelta y augmenta un poco */
+  transform: rotate(360deg) scale(1.1);
+}
+
+/*3. NAVEGACIÓN Y EFECTOS*/
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #334155;
+  padding: 1rem;
+  gap: 1rem;
+  margin: 0;
+  list-style: none;
+}
+
+/* :target hace que se active la animacion de los bordes al clickar en la navbar */
+:target {
+  background-color: #ffffff; 
+  border: 2px solid #5688ba;
+  transition: background-color 0.5s ease;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav a:hover {
+  cursor: pointer;
+  background-color: rgba(247, 252, 247, 0.795);
+  color: #000000;
+}
+
+/*4. ESTRUCTURA Y CONTENEDORES (Móvil First)*/
+
+.container {
+  display: flex;
+  flex-direction: column; 
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.sidebar, .content {
+  width: 100%;
+}
+
+.sidebar section, .content section {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+/* box-sizing: asegura que el padding no aumente la anchura del elemento */
+.sidebar {
+  box-sizing: border-box;
+}
+
+/*5. COMPONENTES Y BLOQUES ESPECÍFICOS */
+
+.card {
+  border-left: 4px solid #2563eb;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* before para añadir la flecha antes de enlaces*/
+.card a::before {
+  content: "--> ";
+  color: var(--color-principal);
+  font-family: monospace;
+}
+
+/* Espaciado */
+p, li {
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  margin-bottom: 1rem;
+}
+
+#soft-skills { 
+line-height: 3; 
+}
+
+#formacion p {
+line-height: 2;
+}
+
+/* 6. RESPONSIVE (Escritorio > 800px)*/
+
+@media (min-width: 800px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: x-large;
+  }
+  
+  header > img { width: 300px; }
+
+  .container {
+    display: grid;
+    /* 550px fijos para sidebar, el resto para content */
+    grid-template-columns: 550px 1fr;
+    padding: 2rem;
+    /* obliga a todas las columnas a tener la misma altura  */
+    align-items: stretch;
+  }
+
+  .sidebar, .content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* hace que la última sección se estire para rellenar el espacio vacío */
+  .sidebar section:last-child, .content section:last-child {
+    flex-grow: 1;
+  }
+}
+footer { 
+  text-align: center;
+  padding: 1rem;
+  background-color: #1e293b;
+  color: white;
+}
